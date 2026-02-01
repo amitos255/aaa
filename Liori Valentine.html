@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Liori 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --baby-pink: #FFB6D9;
+            --soft-pink: #FFD4E9;
+            --blush-pink: #FFC2DD;
+            --deep-pink: #FF69B4;
+            --white-pink: #FFF5F9;
+            --grey: #A8A8A8;
+            --dark-grey: #6B6B6B;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #FFE5F1 0%, #FFF0F7 50%, #FFD4E9 100%);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Floating hearts background */
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.15;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.15;
+            }
+            90% {
+                opacity: 0.15;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 50px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 30px 80px rgba(255, 105, 180, 0.2),
+                        0 0 0 1px rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            width: 90%;
+            animation: fadeInScale 1s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            font-weight: 800;
+            color: var(--deep-pink);
+            margin-bottom: 30px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.1);
+            animation: fadeInDown 1s ease-out 0.3s backwards;
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .question {
+            font-size: 1.5em;
+            color: var(--dark-grey);
+            margin-bottom: 50px;
+            font-weight: 500;
+            animation: fadeIn 1s ease-out 0.6s backwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 120px;
+            animation: fadeInUp 1s ease-out 0.9s backwards;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        button {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.3em;
+            font-weight: 600;
+            padding: 18px 45px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            letter-spacing: 0.5px;
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, var(--baby-pink) 0%, var(--deep-pink) 100%);
+            color: white;
+            transform: scale(1);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.08) translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.4);
+        }
+
+        #yesBtn:active {
+            transform: scale(1.02) translateY(-1px);
+        }
+
+        #noBtn {
+            background: var(--grey);
+            color: white;
+            position: relative;
+            transition: all 0.2s ease-out;
+        }
+
+        /* Celebration styles */
+        .celebration {
+            display: none;
+            animation: celebrationAppear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes celebrationAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotate(-10deg);
+            }
+            60% {
+                transform: scale(1.1) rotate(5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .celebration h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5em;
+            font-weight: 800;
+            color: var(--deep-pink);
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(255, 105, 180, 0.2);
+            animation: bounce 0.6s ease-out 0.3s backwards;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .celebration img {
+            max-width: 400px;
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+            animation: fadeInScale 0.8s ease-out 0.5s backwards;
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--deep-pink);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1000;
+            animation: sparkleAnim 1s ease-out forwards;
+        }
+
+        @keyframes sparkleAnim {
+            0% {
+                transform: translate(0, 0) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .question {
+                font-size: 1.2em;
+            }
+            
+            button {
+                font-size: 1.1em;
+                padding: 15px 35px;
+            }
+            
+            .celebration h2 {
+                font-size: 3.5em;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <div class="hearts-bg" id="heartsBg"></div>
+
+    <div class="container">
+        <div id="proposal">
+            <h1>ליאורי</h1>
+            <p class="question">תהיי הדייט שלי לוולנטיין?</p>
+            <div class="buttons-container">
+                <button id="yesBtn">💕!כן</button>
+                <button id="noBtn">לא</button>
+            </div>
+        </div>
+        <div class="celebration" id="celebration">
+        	<h2>ניפגש כפרה</h2>
+            <h2>🎉🤓</h2>
+            <img src="https://media.giphy.com/media/g9582DNuQppxC/giphy.gif" alt="Celebration">
+            <br>
+            <br>
+            <br>
+            <p class="question">אני יודע שאת אוהבת ורוד</p>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts background
+        const heartsBg = document.getElementById('heartsBg');
+        for (let i = 0; i < 15; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = '💕';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 15 + 's';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            heartsBg.appendChild(heart);
+        }
+
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const proposal = document.getElementById('proposal');
+        const celebration = document.getElementById('celebration');
+        
+        let yesBtnScale = 1;
+        let isMoving = false;
+
+        // Create sparkles effect
+        function createSparkles(x, y) {
+            for (let i = 0; i < 12; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                
+                const angle = (Math.PI * 2 * i) / 12;
+                const distance = 50 + Math.random() * 50;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                
+                sparkle.style.left = x + 'px';
+                sparkle.style.top = y + 'px';
+                sparkle.style.setProperty('--tx', tx + 'px');
+                sparkle.style.setProperty('--ty', ty + 'px');
+                
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 1000);
+            }
+        }
+
+        // Yes button click
+        yesBtn.addEventListener('click', (e) => {
+            createSparkles(e.clientX, e.clientY);
+            
+            setTimeout(() => {
+                proposal.style.display = 'none';
+                celebration.style.display = 'block';
+                
+                // Create continuous sparkles
+                const sparkleInterval = setInterval(() => {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight;
+                    createSparkles(x, y);
+                }, 500);
+                
+                setTimeout(() => clearInterval(sparkleInterval), 5000);
+            }, 300);
+        });
+
+        function moveNoButton(mouseX, mouseY) {
+            if (isMoving) return;
+            isMoving = true;
+
+            const noBtnRect = noBtn.getBoundingClientRect();
+            const btnCenterX = noBtnRect.left + noBtnRect.width / 2;
+            const btnCenterY = noBtnRect.top + noBtnRect.height / 2;
+
+            // Calculate direction away from mouse
+            const deltaX = btnCenterX - mouseX;
+            const deltaY = btnCenterY - mouseY;
+            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+            // Normalize and create movement vector (smaller distance)
+            const moveDistance = 80 + Math.random() * 40;
+            let newX = (deltaX / distance) * moveDistance;
+            let newY = (deltaY / distance) * moveDistance;
+
+            // Add some randomness
+            newX += (Math.random() - 0.5) * 30;
+            newY += (Math.random() - 0.5) * 30;
+
+            // Get current transform values
+            const currentTransform = noBtn.style.transform || 'translate(0px, 0px)';
+            const matches = currentTransform.match(/translate\(([-\d.]+)px,\s*([-\d.]+)px\)/);
+            const currentX = matches ? parseFloat(matches[1]) : 0;
+            const currentY = matches ? parseFloat(matches[2]) : 0;
+
+            // Calculate new position
+            let proposedX = currentX + newX;
+            let proposedY = currentY + newY;
+
+            // Limit how far the button can move from its original position
+            const maxDistance = 200; // Maximum distance from original position
+            const totalDistance = Math.sqrt(proposedX * proposedX + proposedY * proposedY);
+            
+            if (totalDistance > maxDistance) {
+                // Scale back to max distance
+                proposedX = (proposedX / totalDistance) * maxDistance;
+                proposedY = (proposedY / totalDistance) * maxDistance;
+            }
+
+            // Also ensure button stays within viewport
+            const container = document.querySelector('.container');
+            const containerRect = container.getBoundingClientRect();
+            const futureRect = {
+                left: noBtnRect.left + (proposedX - currentX),
+                right: noBtnRect.right + (proposedX - currentX),
+                top: noBtnRect.top + (proposedY - currentY),
+                bottom: noBtnRect.bottom + (proposedY - currentY)
+            };
+
+            // Check boundaries and adjust if needed
+            if (futureRect.left < containerRect.left + 20) {
+                proposedX = currentX + (containerRect.left + 20 - noBtnRect.left);
+            }
+            if (futureRect.right > containerRect.right - 20) {
+                proposedX = currentX + (containerRect.right - 20 - noBtnRect.right);
+            }
+            if (futureRect.top < containerRect.top + 20) {
+                proposedY = currentY + (containerRect.top + 20 - noBtnRect.top);
+            }
+            if (futureRect.bottom > containerRect.bottom - 20) {
+                proposedY = currentY + (containerRect.bottom - 20 - noBtnRect.bottom);
+            }
+
+            // Apply new position
+            noBtn.style.transform = `translate(${proposedX}px, ${proposedY}px)`;
+
+            // Grow Yes button
+            yesBtnScale += 0.15;
+            yesBtn.style.transform = `scale(${yesBtnScale})`;
+
+            setTimeout(() => {
+                isMoving = false;
+            }, 200);
+        }
+
+        // Track mouse movement and move No button when cursor gets close
+        document.addEventListener('mousemove', (e) => {
+            if (proposal.style.display === 'none') return;
+
+            const noBtnRect = noBtn.getBoundingClientRect();
+            const btnCenterX = noBtnRect.left + noBtnRect.width / 2;
+            const btnCenterY = noBtnRect.top + noBtnRect.height / 2;
+            
+            const distance = Math.sqrt(
+                Math.pow(e.clientX - btnCenterX, 2) +
+                Math.pow(e.clientY - btnCenterY, 2)
+            );
+            
+            // Move when cursor gets within 120px - impossible to reach!
+            if (distance < 120) {
+                moveNoButton(e.clientX, e.clientY);
+            }
+        });
+
+        // For mobile/touch - move on touch start
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            moveNoButton(touch.clientX, touch.clientY);
+        });
+    </script>
+</body>
+</html>
